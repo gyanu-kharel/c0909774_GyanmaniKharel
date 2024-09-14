@@ -42,13 +42,17 @@ jobs:
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
           terraform apply -auto-approve
 
-      - name: Configure Kubectl
-        run: |
-          echo "${{ setup.KUBE_CONFIG }}" > ~/.kube/config
+      - name: Setup Kubectl
+        uses: azure/setup-kubectl@v1
+        with: 
+          version: '1.31'
 
+      - name: Get Kubernetes Credentials
+        run: |
+          az aks get-credentials --resource-group todoapprg --name todoappcluster  
 
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f deployment.yaml
-          kubectl apply -f service.yamli
+          kubectl apply -f service.yaml
 
