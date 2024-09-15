@@ -70,9 +70,7 @@ jobs:
 
 
       - name: Setup Kubectl
-        uses: azure/setup-kubectl@v1
-        with: 
-          version: '1.31'
+        uses: azure/setup-kubectl@v4
 
       - name: Get Kubernetes Credentials
         run: |
