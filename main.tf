@@ -5,6 +5,7 @@ provider "azurerm" {
   client_secret   = var.AZURE_CLIENT_SECRET
   tenant_id       = var.AZURE_TENANT_ID
   subscription_id = var.AZURE_SUBSCRIPTION_ID
+  arm_access_key = var.ARM_ACCESS_KEY
 }
 
 resource "azurerm_resource_group" "aks_rg" {
@@ -37,7 +38,7 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "todoapp"
     storage_account_name = "todostoragegyan" 
-    container_name       = "tfstates"
-    key                  = "terraform.tfstate"
+    container_name = "tfstates"
+    key = "terraform.tfstate"
   }
 }
