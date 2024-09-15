@@ -33,3 +33,12 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     environment = "development"
   }
 }
+
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "todoapp"
+    storage_account_name = "todostoragegyan" 
+    container_name       = "tfstates"
+    key                  = "terraform.tfstate"
+  }
+}
