@@ -45,11 +45,11 @@ jobs:
           ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
         run: |
           terraform plan -input=false \
-            -var "client_id=$ARM_CLIENT_ID" \
-            -var "client_secret=$ARM_CLIENT_SECRET" \
-            -var "tenant_id=$ARM_TENANT_ID" \
-            -var "subscription_id=$ARM_SUBSCRIPTION_ID" \
-            -var "access_key=$ARM_ACCESS_KEY"
+            -var "ARM_CLIENT_ID=$ARM_CLIENT_ID" \
+            -var "ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET" \
+            -var "ARM_TENANT_ID=$ARM_TENANT_ID" \
+            -var "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID" \
+            -var "ARM_ACCESS_KEY=$ARM_ACCESS_KEY"
 
 
       - name: Terraform apply
@@ -62,13 +62,13 @@ jobs:
         run: |
           az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
           terraform apply -input=false -auto-approve \
-            -var "client_id=$ARM_CLIENT_ID" \
-            -var "client_secret=$ARM_CLIENT_SECRET" \
-            -var "tenant_id=$ARM_TENANT_ID" \
-            -var "subscription_id=$ARM_SUBSCRIPTION_ID" \
-            -var "access_key=$ARM_ACCESS_KEY"
+            -var "ARM_CLIENT_ID=$ARM_CLIENT_ID" \
+            -var "ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET" \
+            -var "ARM_TENANT_ID=$ARM_TENANT_ID" \
+            -var "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID" \
+            -var "ARM_ACCESS_KEY=$ARM_ACCESS_KEY"
 
-            
+
       - name: Setup Kubectl
         uses: azure/setup-kubectl@v1
         with: 
