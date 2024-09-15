@@ -1,10 +1,28 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.x"
+    }
+  }
+
+   backend "azurerm" {
+    resource_group_name  = "todoapp"
+    storage_account_name = "todostoragegyan" 
+    container_name = "tfstates"
+    key = "terraform.tfstate"
+  }
+}
+
+
+
 provider "azurerm" {
   features {}
 
-  client_id       = var.AZURE_CLIENT_ID
-  client_secret   = var.AZURE_CLIENT_SECRET
-  tenant_id       = var.AZURE_TENANT_ID
-  subscription_id = var.AZURE_SUBSCRIPTION_ID
+  client_id       = var.ARM_CLIENT_ID
+  client_secret   = var.ARM_CLIENT_SECRET
+  tenant_id       = var.ARM_TENANT_ID
+  subscription_id = var.ARM_SUBSCRIPTION_ID
 }
 
 resource "azurerm_resource_group" "aks_rg" {
@@ -30,14 +48,5 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
 
   tags = {
     environment = "development"
-  }
-}
-
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "todoapp"
-    storage_account_name = "todostoragegyan" 
-    container_name = "tfstates"
-    key = "terraform.tfstate"
   }
 }
