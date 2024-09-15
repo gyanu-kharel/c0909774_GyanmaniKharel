@@ -31,7 +31,9 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        run: terraform init
+        run: |
+          az login --service-principal --username $TF_VAR_AZURE_CLIENT_ID --password $TF_VAR_AZURE_CLIENT_SECRET --tenant $TF_VAR_AZURE_TENANT_ID
+          terraform init
 
       - name: Terraform plan
         run: terraform plan
