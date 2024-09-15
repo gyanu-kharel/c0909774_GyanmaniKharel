@@ -20,7 +20,10 @@ jobs:
       - name: Build and Publish Docker Image
         run: |
           docker build -t kharel2054/todo-app:${{ github.sha }} .
+          docker tag kharel2054/todo-app:${{ github.sha }} kharel2054/todo-app:latest
           docker push kharel2054/todo-app:${{ github.sha }}
+          docker push kharel2054/todo-app:latest
+
 
       - name: Setup Terraform 
         uses: hashicorp/setup-terraform@v1
