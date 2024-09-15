@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: todo-app
-          image: kharel2054/todo-app
+          image: kharel2054/todo-app:latest
           ports:
             - containerPort: 8000
