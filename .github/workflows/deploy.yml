@@ -34,7 +34,6 @@ jobs:
         env: 
           TF_VAR_ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
         run: |
-          az login
           terraform init
 
       - name: Terraform plan
