@@ -51,7 +51,7 @@ jobs:
           terraform apply -auto-approve
 
       - name: Setup Kubectl
-        uses: azure/setup-kubectl@v1
+        uses: azure/setup-kubectl@v4
         with: 
           version: '1.31'
 
