@@ -19,8 +19,14 @@ jobs:
 
       - name: Build and Publish Docker Image
         run: |
-          docker build -t kharel2054/todo-app:latest .
-          docker push kharel2054/todo-app:latest
+          docker build -t kharel2054/todo-app:${{ github.sha }} .
+          docker push kharel2054/todo-app:${{ github.sha }}
+
+      - name: Install envsubst and substitute GITHUB_SHA
+        run: |
+          sudo apt-get install -y gettext-base
+          export GITHUB_SHA=${{ github.sha }}
+          envsubst < k8s/deployment.yaml > k8s/deployment_with_sha.yaml
 
       - name: Setup Terraform 
         uses: hashicorp/setup-terraform@v1
