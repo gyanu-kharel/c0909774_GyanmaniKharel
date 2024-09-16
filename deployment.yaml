@@ -15,6 +15,5 @@ spec:
       containers:
         - name: todo-app
           image: kharel2054/todo-app:${GITHUB_SHA}
-          imagePullPolicy: Always
           ports:
             - containerPort: 8000

@@ -26,7 +26,8 @@ jobs:
         run: |
           sudo apt-get install -y gettext-base
           export GITHUB_SHA=${{ github.sha }}
-          envsubst < k8s/deployment.yaml > k8s/deployment_with_sha.yaml
+          envsubst < deployment.yaml > deployment_with_sha.yaml
+          cat deployment_with_sha.yaml
 
       - name: Setup Terraform 
         uses: hashicorp/setup-terraform@v1
@@ -84,5 +85,5 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f k8s/deployment.yaml
-          kubectl apply -f k8s/service.yaml
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
