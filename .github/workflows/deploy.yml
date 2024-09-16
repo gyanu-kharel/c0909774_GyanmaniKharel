@@ -85,5 +85,5 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f deployment.yaml
+          kubectl apply -f deployment_with_sha.yaml
           kubectl apply -f service.yaml
