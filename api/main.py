@@ -30,11 +30,3 @@ def create_todo(todo: TodoModel):
         content= {'message': 'Created'},
         status_code=201
     )
-
-
-@app.get("/test")
-def test():
-    return JSONResponse(
-        content={'message': 'test passed'},
-        status_code=200
-    )
