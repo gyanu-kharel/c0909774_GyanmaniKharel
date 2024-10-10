@@ -33,6 +33,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
+        working-directory: ./terraform
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -44,6 +45,7 @@ jobs:
 
 
       - name: Terraform plan
+        working-directory: ./terraform
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -60,6 +62,7 @@ jobs:
 
 
       - name: Terraform apply
+        working-directory: ./terraform
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
