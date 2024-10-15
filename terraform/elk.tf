@@ -7,18 +7,12 @@ provider "helm" {
   }
 }
 
-
-resource "kubernetes_namespace" "logging" {
-  metadata {
-    name = "logging"
-  }
-}
-
 #Elasticsearch config
 resource "helm_release" "elasticsearch" {
   name       = "elasticsearch"
   repository = "https://helm.elastic.co"
   chart      = "elasticsearch"
+
 
   set {
     name  = "replicas"
@@ -44,8 +38,6 @@ resource "helm_release" "elasticsearch" {
     name  = "resources.limits.memory"
     value = "2Gi"
   }
-
-  namespace = kubernetes_namespace.logging.metadata[0].name
 }
 
 
@@ -60,8 +52,6 @@ resource "helm_release" "logstash" {
     name  = "replicas"
     value = "1"
   }
-
-  namespace = kubernetes_namespace.logging.metadata[0].name
 }
 
 
@@ -95,6 +85,4 @@ resource "helm_release" "kibana" {
     name  = "service.type"
     value = "LoadBalancer"
   }
-
-  namespace = kubernetes_namespace.logging.metadata[0].name
 }
