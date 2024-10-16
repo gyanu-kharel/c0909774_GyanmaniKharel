@@ -38,21 +38,25 @@ resource "helm_release" "elasticsearch" {
     name  = "resources.limits.memory"
     value = "2Gi"
   }
-}
-
-
-
-#Logstash config
-resource "helm_release" "logstash" {
-  name       = "logstash"
-  repository = "https://helm.elastic.co"
-  chart      = "logstash"
-
   set {
-    name  = "replicas"
-    value = "1"
+    name  = "service.type"
+    value = "LoadBalancer"
   }
 }
+
+
+
+# #Logstash config
+# resource "helm_release" "logstash" {
+#   name       = "logstash"
+#   repository = "https://helm.elastic.co"
+#   chart      = "logstash"
+
+#   set {
+#     name  = "replicas"
+#     value = "1"
+#   }
+# }
 
 
 # Kibana config
@@ -79,10 +83,5 @@ resource "helm_release" "kibana" {
   set {
     name  = "resources.limits.memory"
     value = "1Gi"
-  }
-
-  set {
-    name  = "service.type"
-    value = "LoadBalancer"
   }
 }
