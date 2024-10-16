@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 from elasticsearch import Elasticsearch, exceptions
 from datetime import datetime
+import time
 
 app = FastAPI()
 
