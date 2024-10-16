@@ -40,9 +40,9 @@ spec:
             - containerPort: 9200
           env:
             - name: discovery.type
-              value: single-node
+              value: "single-node"
             - name: xpack.security.enabled
-              value: false
+              value: "false"
           # resources:
           #   requests:
           #     memory: "1Gi"
